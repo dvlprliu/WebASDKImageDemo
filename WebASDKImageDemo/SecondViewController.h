@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : ASViewController 
 
 
 @end
