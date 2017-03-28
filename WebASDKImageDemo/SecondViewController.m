@@ -29,20 +29,20 @@
     node.URL = _url;
     node.delegate = self;
     [self.view addSubnode:node];
-    
+    ASImageNodeRoundBorderModificationBlock(2, [UIColor redColor]);
 
-    
+    // Since ASNetworkImageNode only has a weak ref of cache and downloader,
+    // so I have to create a strong ref of it
     self.asdkManager = asyncImageManager;
-
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)imageNode:(ASNetworkImageNode *)imageNode didLoadImage:(UIImage *)image {
+    // When the node did load image, I would assume that the image is in the cache
     [self.asdkManager cachedImageWithURL:_url callbackQueue:dispatch_get_main_queue() completion:^(id<ASImageContainerProtocol>  _Nullable imageFromCache) {
         // here should not be nil
         NSLog(@"%@", imageFromCache.asdk_image);

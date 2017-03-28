@@ -31,12 +31,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)imageNode:(ASNetworkImageNode *)imageNode didLoadImage:(UIImage *)image {
     SDWebImageManager *webImageManager = [SDWebImageManager sharedManager];
     NSString *cacheKey = [webImageManager cacheKeyForURL:_url];
+    // When the node did load image, I would assume that the image is in the cache
     [webImageManager.imageCache queryCacheOperationForKey:cacheKey done:^(UIImage * _Nullable image, NSData * _Nullable data, SDImageCacheType cacheType) {
         // here should not be nil
         NSLog(@"image: %@, data: %@, cacheType: %@", image, data, @(cacheType));
